@@ -237,20 +237,23 @@ docker restart fika
 ### SPT.Docker Installation without FIKA
 This section explains how to install SPT without FIKA.
 
-Clone the SPT git repository
+Clone the SPT git repository and change into the directory
 ```
 git clone https://github.com/umbraprior/SPT.Docker
-```
-
-Change into the directory
-```
 cd SPT.Docker
 ```
 
-Build the server using the following command (3.8.1). To change to a different Version you can change the hash to the full commit has from the aki git page of your desired version.
-Using an older version might introduce problems when installing FIKA later. 
+Build the server using the following command. To change to a different Version you can change the hash to the full commit has from the aki git page of your desired version.
+Using an older version might introduce problems when installing FIKA later.
+
+3.8.1
 ```
 docker build --no-cache --build-arg SPT=79a5d32cb276e18a5b4405e1f7823cda4fe8e317 --label SPTAki -t sptaki .
+```
+
+3.8.0
+```
+docker build --no-cache --build-arg SPT=3951e29a340e917d158ec061ee671c4ae0f9c8ec --label SPTAki -t sptaki .
 ```
 
 Run the image once to create the initial files.
