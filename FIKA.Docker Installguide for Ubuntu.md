@@ -86,12 +86,8 @@ mkdir fika
 cd fika
 ```
 
-Create a file "Dockerfile" using nano (or vi or whatever you know best, I know vi a bit better) and copy the following text into it.
-```
-vi Dockerfile
-```
+Create a file called "Dockerfile" using and copy the following text into it.
 
-Copy this into the file:
 ```
 ##
 ## Dockerfile
