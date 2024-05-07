@@ -1,4 +1,4 @@
-## DOCKER INSTALLATION UBUNTU
+## DOCKER INSTALLATION ON UBUNTU
 This guide includes installing Docker, setting up UFW with Docker, opening Ports and installing SPT/FIKA. For any Clientside configuration refer to the official Documentation for SPT/FIKA and their respective Discord servers.
 Keep in mind that SPT is not associated with FIKA and will not provide any support for SPT as long as you use FIKA.
 
