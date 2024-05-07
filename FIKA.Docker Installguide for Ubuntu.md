@@ -1,11 +1,11 @@
 ## SPT/FIKA INSTALLATION ON UBUNTU
-This guide includes installing Docker, setting up UFW with Docker, opening Ports and installing SPT/FIKA. For any Clientside configuration refer to the official Documentation for SPT/FIKA and their respective Discord servers.
-Keep in mind that SPT is not associated with FIKA and will not provide any support for SPT as long as you use FIKA.
+This guide assumes that you already have a running Ubuntu server and a little bit of experience using Linux.
+We will go through Installing Docker on your Server, opening the necessary ports and installing SPT with and without FIKA.
 
 ### Table of Contents
 1. [Installing Docker on your server](#Installing-Docker-on-your-server)
-2. [Setting up ufw with Docker and opening necessary ports](#Setting-up-ufw-with-Docker-and-opening-necessary-ports)
-3. [FIKA.Docker Installation](#FIKA.Docker-Installation)
+2. [Opening necessary ports](#Setting-up-ufw-with-Docker-and-opening-necessary-ports)
+3. [SPT.Docker with FIKA Installation](#FIKA.Docker-Installation)
 4. [SPT.Docker Installation](#SPT.Docker-Installation)
 
 ### Installing Docker on your server
@@ -65,7 +65,7 @@ adduser dockeruser
 To be able to use docker with this user create a docker group and add them to it
 ```
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker dockeruser
 ```
 
 Log into the newly created user
@@ -201,19 +201,20 @@ Build the mod
 docker build --no-cache --label FIKA -t fika .
 ```
 
-Now run the following command to create the initial files. Make sure to replace "{FULLSPTSERVERPATH}" with your full path to the /SPT.Docker/server/ folder:
+Now create another directory next to the fika directory. We will use this directory for the actual SPT files.
 ```
-docker run --pull=never --user $(id -u):$(id -g) -v {FULLSPTSERVERPATH}:/opt/server -p 6969:6969 -p 6970:6970 -p 6971:6971 -p 6972:6972 -it --name fika fika
+cd ..
+mkdir spt-server
 ```
 
-For example:
+Now run the following command to create the initial files. Make sure to replace "{FULLSPTSERVERPATH}" with your full path to the /SPT.Docker/server/ folder:
 ```
-docker run --pull=never --user $(id -u):$(id -g) -v /home/dockeruser/SPT.Docker/server/:/opt/server -p 6969:6969 -p 6970:6970 -p 6971:6971 -p 6972:6972 -it --name fika fika
+docker run --pull=never --user $(id -u):$(id -g) -v /home/dockeruser/spt-server:/opt/server -p 6969:6969 -p 6970:6970 -p 6971:6971 -p 6972:6972 -it --name fika fika
 ```
 
 After that has finished you may have to delete the "delete_me" file in the spt server folder again
 ```
-cd ../SPT.Docker/server
+cd ../spt-server
 rm delete_me
 ```
 
