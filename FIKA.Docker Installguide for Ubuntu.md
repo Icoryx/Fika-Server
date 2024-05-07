@@ -87,7 +87,6 @@ cd fika
 ```
 
 Create a file called "Dockerfile" using and copy the following text into it.
-
 ```
 ##
 ## Dockerfile
@@ -152,12 +151,7 @@ CMD bash ./fcpy.sh
 ```
 Save and close the file
 
-Create another file called fcpy.sh
-```
-vi fcpy.sh
-```
-
-And copy the following into that file:
+Create another file called "fcpy.sh" and copy the following into it:
 ```
 # fcpy.sh
 
