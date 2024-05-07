@@ -1,8 +1,15 @@
-## DOCKER INSTALLATION ON UBUNTU
+## SPT/FIKA INSTALLATION ON UBUNTU
 This guide includes installing Docker, setting up UFW with Docker, opening Ports and installing SPT/FIKA. For any Clientside configuration refer to the official Documentation for SPT/FIKA and their respective Discord servers.
 Keep in mind that SPT is not associated with FIKA and will not provide any support for SPT as long as you use FIKA.
 
+### Table of Contents
+1. [Installing Docker on your server](#Installing-Docker-on-your-server)
+2. [Setting up ufw with Docker and opening necessary ports](#Setting-up-ufw-with-Docker-and-opening-necessary-ports)
+3. [FIKA.Docker Installation](#FIKA.Docker-Installation)
+4. [SPT.Docker Installation](#SPT.Docker-Installation)
+
 ### Installing Docker on your server
+
 Setup Docker's apt repository
 ```
 # Add Docker's official GPG key:
@@ -47,8 +54,8 @@ If you decide to ignore this or already use a different fix you can continue wit
 You will also need to open these ports in your windows firewall. Atleast the P2P ports is required. Fortunately @DOKDOR created a tool that helps you with that:
 https://github.com/DOKDOR/Fika-Firewall-Fixer
 
-### SPT.Docker INSTALLATION
-We can now start with the Installation of the SPT.Docker. It is recommended to create a new non-root user to use for docker containers.
+### Creating a new user for Docker
+It is recommended to create a new non-root user to use for docker containers.
 If you already have one use it and skip to cloning the repository.
 
 ```
@@ -66,55 +73,16 @@ Log into the newly created user
 su - dockeruser
 ```
 
-Clone the SPT git repository
-```
-git clone https://github.com/umbraprior/SPT.Docker
-```
+### FIKA.Docker Installation
+Now we can install SPT with FIKA.
 
-Change into the directory
-```
-cd SPT.Docker
-```
-
-Build the server using the following command (3.8.1). To change to a different Version you can change the hash to the full commit has from the aki git page of your desired version.
-Using an older version might introduce problems when installing FIKA later. 
-```
-docker build --no-cache --build-arg SPT=79a5d32cb276e18a5b4405e1f7823cda4fe8e317 --label SPTAki -t sptaki .
-```
-
-Run the image once to create the initial files.
-```
-docker run --pull=never --user $(id -u):$(id -g) -v $PWD/server:/opt/server -p 6969:6969 -p 6970:6970 -p 6971:6971 -p 6972:6972 -it --name sptaki sptaki
-```
-
-Once finished go to {SPT.Docker Path}/server and delete the delete_me file
-```
-cd server/
-rm delete_me
-```
-
-Start the aki.server and enable starting on boot.
-```
-docker start sptaki
-docker update --restart unless-stopped sptaki
-```
-
-To see if it works you can use this command to show the aki.server console:
-```
-docker logs sptaki -f
-```
-To exit press CTRL+C
-
-### FIKA.Docker INSTALLATION
-If SPT is running we can continue with the Installation of FIKA.
-
-To start create a folder called "fika" next to the SPT.Docker folder and change to it
+To start create a new folder called "fika" and change to it.
 ```
 mkdir fika
 cd fika
 ```
 
-Create a file "Dockerfile" using nano (or vi or whatever you know best, I know vi a bit better) and copy the following text into it
+Create a file "Dockerfile" using nano (or vi or whatever you know best, I know vi a bit better) and copy the following text into it.
 ```
 vi Dockerfile
 ```
@@ -270,6 +238,48 @@ To install additional mods you just put the mods files into the /SPT.Docker/serv
 ```
 docker restart fika
 ```
+
+### SPT.Docker Installation without FIKA
+This section explains how to install SPT without FIKA.
+
+Clone the SPT git repository
+```
+git clone https://github.com/umbraprior/SPT.Docker
+```
+
+Change into the directory
+```
+cd SPT.Docker
+```
+
+Build the server using the following command (3.8.1). To change to a different Version you can change the hash to the full commit has from the aki git page of your desired version.
+Using an older version might introduce problems when installing FIKA later. 
+```
+docker build --no-cache --build-arg SPT=79a5d32cb276e18a5b4405e1f7823cda4fe8e317 --label SPTAki -t sptaki .
+```
+
+Run the image once to create the initial files.
+```
+docker run --pull=never --user $(id -u):$(id -g) -v $PWD/server:/opt/server -p 6969:6969 -p 6970:6970 -p 6971:6971 -p 6972:6972 -it --name sptaki sptaki
+```
+
+Once finished go to {SPT.Docker Path}/server and delete the delete_me file
+```
+cd server/
+rm delete_me
+```
+
+Start the aki.server and enable starting on boot.
+```
+docker start sptaki
+docker update --restart unless-stopped sptaki
+```
+
+To see if it works you can use this command to show the aki.server console:
+```
+docker logs sptaki -f
+```
+To exit press CTRL+C
 
 If you encounter any issues look at the official documentations and ask on the FIKA Discord server.
 
