@@ -45,8 +45,12 @@ The result should say something along "Hello from Docker".
 To fix this you can follow this guide and come back here afterwards: https://github.com/chaifeng/ufw-docker
 If you decide to ignore this or already use a different fix you can continue with opening the necessary ports for SPT/FIKA:
 
-	```ufw route allow proto tcp from any to any port 6969```
-	```ufw route allow proto udp from any to any port 25565```
+```
+ufw route allow proto tcp from any to any port 6969
+```
+```
+ufw route allow proto udp from any to any port 25565
+```
 
 - If you run your server in your own network make sure to also allow these ports on your router/firewall.
 - If you use a VPS make sure to check how your provider handles port forwarding. You may have to do some addition configuration.
