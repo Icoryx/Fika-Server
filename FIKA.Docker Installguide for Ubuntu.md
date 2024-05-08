@@ -6,7 +6,7 @@ We will go through Installing Docker on your Server, opening the necessary ports
 1. [Installing Docker on your server](#Installing-Docker-on-your-server)
 2. [Opening necessary ports](#Setting-up-ufw-with-Docker-and-opening-necessary-ports)
 3. [SPT.Docker with FIKA Installation](#FIKA.Docker-Installation)
-4. [SPT.Docker Installation](#SPT.Docker-Installation)
+4. [SPT.Docker Installation](#SPT.Docker-Installation-without-fika)
 
 ### Installing Docker on your server
 
